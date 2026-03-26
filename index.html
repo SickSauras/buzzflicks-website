@@ -5,113 +5,137 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buzzflicks | Marketing Agency</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/scrollreveal"></script>
-</head>
-<body class="bg-gray-50 text-gray-800">
 
-<!-- Navbar -->
+  <!-- 🎨 BRAND COLORS -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4A5DAA',
+            secondary: '#E14D72',
+            dark: '#1f2937'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-white text-gray-800">
+
+<!-- NAVBAR -->
 <header class="bg-white shadow-md fixed w-full z-50">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-indigo-600">Buzzflicks</h1>
+    <img src="logo.png" class="h-10">
     <nav class="space-x-6 hidden md:block">
       <a href="#home">Home</a>
       <a href="#services">Services</a>
       <a href="#portfolio">Portfolio</a>
-      <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
 
-<!-- Hero -->
-<section id="home" class="h-screen flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-center">
+<!-- HERO -->
+<section id="home" class="h-screen flex items-center justify-center text-center bg-gradient-to-r from-secondary to-primary text-white">
   <div>
-    <h2 class="text-5xl font-bold mb-4">We Grow Brands with Viral Content</h2>
-    <p class="mb-6">Helping businesses in Lucknow scale using reels & ads</p>
-    <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-full">Book Free Consultation</a>
+    <h2 class="text-5xl font-bold mb-4">Buzzflicks Marketing Agency</h2>
+    <p class="mb-4">We help brands grow using viral reels & ads</p>
+    <p class="mb-6 text-sm">📍 Lucknow, India</p>
+    <a href="#contact" class="bg-white text-primary px-6 py-3 rounded-full font-semibold">Book Free Consultation</a>
   </div>
 </section>
 
-<!-- Services -->
+<!-- SERVICES -->
 <section id="services" class="py-16">
   <div class="max-w-7xl mx-auto px-6 text-center">
     <h3 class="text-3xl font-bold mb-10">Services</h3>
+
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white p-6 rounded-2xl shadow hover:scale-105 transition">
-        <h4 class="text-xl font-semibold">Social Media Growth</h4>
-        <p>Instagram growth, reels strategy & content planning</p>
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h4 class="text-xl font-semibold text-primary">Social Media Growth</h4>
+        <p>Instagram reels & content strategy</p>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow hover:scale-105 transition">
-        <h4 class="text-xl font-semibold">Video Editing</h4>
-        <p>High-retention reels & ads</p>
+
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h4 class="text-xl font-semibold text-secondary">Video Editing</h4>
+        <p>High-retention reels</p>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow hover:scale-105 transition">
-        <h4 class="text-xl font-semibold">Ads & Marketing</h4>
-        <p>Paid ads that convert into leads</p>
+
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h4 class="text-xl font-semibold text-primary">Ads</h4>
+        <p>Lead generation campaigns</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Portfolio -->
+<!-- INSTAGRAM PORTFOLIO -->
 <section id="portfolio" class="py-16 bg-gray-100">
   <div class="max-w-7xl mx-auto px-6 text-center">
     <h3 class="text-3xl font-bold mb-10">Our Work</h3>
+
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white p-4 rounded-xl shadow">Reel Project 1 (10K+ views)</div>
-      <div class="bg-white p-4 rounded-xl shadow">Reel Project 2 (25K+ views)</div>
-      <div class="bg-white p-4 rounded-xl shadow">Ad Campaign (Leads Generated)</div>
+
+      <!-- 🔥 PASTE YOUR INSTAGRAM REEL EMBED BELOW -->
+      <blockquote class="instagram-media" data-instgrm-permalink="YOUR_INSTAGRAM_REEL_LINK"></blockquote>
+
+      <blockquote class="instagram-media" data-instgrm-permalink="YOUR_INSTAGRAM_REEL_LINK"></blockquote>
+
+      <blockquote class="instagram-media" data-instgrm-permalink="YOUR_INSTAGRAM_REEL_LINK"></blockquote>
+
     </div>
   </div>
 </section>
 
-<!-- Pricing -->
-<section id="pricing" class="py-16">
-  <div class="max-w-7xl mx-auto px-6 text-center">
-    <h3 class="text-3xl font-bold mb-10">Pricing</h3>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white p-6 rounded-xl shadow">
-        <h4 class="text-xl font-bold">Starter</h4>
-        <p class="text-2xl">₹5,000</p>
-        <p>5 Reels + Basic Strategy</p>
-      </div>
-      <div class="bg-indigo-600 text-white p-6 rounded-xl shadow scale-105">
-        <h4 class="text-xl font-bold">Growth</h4>
-        <p class="text-2xl">₹10,000</p>
-        <p>15 Reels + Ads Setup</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow">
-        <h4 class="text-xl font-bold">Pro</h4>
-        <p class="text-2xl">₹20,000</p>
-        <p>Full Marketing + Ads + Strategy</p>
-      </div>
-    </div>
+<!-- ABOUT -->
+<section class="py-16">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <h3 class="text-3xl font-bold mb-6">About Us</h3>
+    <p>We help businesses in Lucknow grow using reels, content & ads.</p>
+    <p class="font-semibold mt-4">Founders: Laraib & Sharib Khan</p>
   </div>
 </section>
 
-<!-- Contact -->
+<!-- CONTACT -->
 <section id="contact" class="py-16 bg-gray-100">
   <div class="max-w-5xl mx-auto px-6 text-center">
-    <h3 class="text-3xl font-bold mb-6">Book Free Consultation</h3>
-    <form class="grid gap-4">
-      <input type="text" placeholder="Name" class="p-3 border rounded">
-      <input type="tel" placeholder="Phone" class="p-3 border rounded">
-      <textarea placeholder="Your Requirement" class="p-3 border rounded"></textarea>
-      <button class="bg-indigo-600 text-white py-3 rounded">Submit</button>
+    <h3 class="text-3xl font-bold mb-6">Get Leads on WhatsApp</h3>
+
+    <form onsubmit="sendToWhatsApp(event)" class="grid gap-4 max-w-md mx-auto">
+      <input id="name" type="text" placeholder="Name" class="p-3 border rounded" required>
+      <input id="phone" type="tel" placeholder="Phone" class="p-3 border rounded" required>
+      <textarea id="msg" placeholder="Your Requirement" class="p-3 border rounded"></textarea>
+      <button class="bg-primary text-white py-3 rounded">Send on WhatsApp</button>
     </form>
   </div>
 </section>
 
-<!-- WhatsApp Button -->
-<a href="https://wa.me/91XXXXXXXXXX" class="fixed bottom-6 right-6 bg-green-500 text-white px-5 py-3 rounded-full shadow-lg">WhatsApp</a>
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/91XXXXXXXXXX" class="fixed bottom-6 right-6 bg-green-500 text-white px-5 py-3 rounded-full shadow-lg">Chat</a>
 
-<!-- Footer -->
-<footer class="bg-gray-900 text-white py-6 text-center">
+<!-- FOOTER -->
+<footer class="bg-dark text-white py-6 text-center">
   <p>© 2026 Buzzflicks</p>
 </footer>
 
+<!-- INSTAGRAM SCRIPT -->
+<script async src="https://www.instagram.com/embed.js"></script>
+
+<!-- WHATSAPP SCRIPT -->
 <script>
-ScrollReveal().reveal('section', { delay: 200, distance: '50px', origin: 'bottom', duration: 800 });
+function sendToWhatsApp(e) {
+  e.preventDefault();
+
+  let name = document.getElementById('name').value;
+  let phone = document.getElementById('phone').value;
+  let msg = document.getElementById('msg').value;
+
+  let text = `New Lead:%0AName: ${name}%0APhone: ${phone}%0AMessage: ${msg}`;
+
+  window.open(`https://wa.me/91XXXXXXXXXX?text=${text}`, '_blank');
+}
 </script>
 
 </body>
