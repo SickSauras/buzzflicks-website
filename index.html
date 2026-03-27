@@ -1,142 +1,156 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- ===================== GLOBAL STYLE (USE IN ALL FILES) ===================== --><style>
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background: #E14D72;
+  transition: 0.3s;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+.active {
+  color: #E14D72;
+  font-weight: bold;
+}
+</style><!-- ===================== INDEX.HTML ===================== --><!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buzzflicks | Marketing Agency</title>
+  <title>Buzzflicks | Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- 🎨 BRAND COLORS -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#4A5DAA',
-            secondary: '#E14D72',
-            dark: '#1f2937'
-          }
-        }
-      }
-    }
-  </script>
 </head>
-
-<body class="bg-white text-gray-800">
-
-<!-- NAVBAR -->
-<header class="bg-white shadow-md fixed w-full z-50">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<body class="bg-white text-gray-800"><header class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between">
     <img src="logo.png" class="h-10">
-    <nav class="space-x-6 hidden md:block">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
+    <nav class="space-x-6">
+      <a class="nav-link active" href="index.html">Home</a>
+      <a class="nav-link" href="team.html">Team</a>
+      <a class="nav-link" href="services.html">Services</a>
+      <a class="nav-link" href="contact.html">Contact</a>
     </nav>
   </div>
-</header>
-
-<!-- HERO -->
-<section id="home" class="h-screen flex items-center justify-center text-center bg-gradient-to-r from-secondary to-primary text-white">
+</header><section class="h-screen flex items-center justify-center text-center bg-gradient-to-r from-pink-500 to-blue-500 text-white">
   <div>
-    <h2 class="text-5xl font-bold mb-4">Buzzflicks Marketing Agency</h2>
-    <p class="mb-4">We help brands grow using viral reels & ads</p>
-    <p class="mb-6 text-sm">📍 Lucknow, India</p>
-    <a href="#contact" class="bg-white text-primary px-6 py-3 rounded-full font-semibold">Book Free Consultation</a>
+    <h1 class="text-5xl font-bold mb-4">Buzzflicks</h1>
+    <p>Creative Marketing Agency in Lucknow</p>
   </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="py-16">
-  <div class="max-w-7xl mx-auto px-6 text-center">
-    <h3 class="text-3xl font-bold mb-10">Services</h3>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white p-6 rounded-2xl shadow">
-        <h4 class="text-xl font-semibold text-primary">Social Media Growth</h4>
-        <p>Instagram reels & content strategy</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-2xl shadow">
-        <h4 class="text-xl font-semibold text-secondary">Video Editing</h4>
-        <p>High-retention reels</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-2xl shadow">
-        <h4 class="text-xl font-semibold text-primary">Ads</h4>
-        <p>Lead generation campaigns</p>
-      </div>
+</section><section class="py-16 text-center max-w-3xl mx-auto">
+  <h2 class="text-3xl font-bold mb-4">About Us</h2>
+  <p>We help brands grow using reels, content & strategy.</p>
+</section><section class="py-16 bg-gray-100">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+    <img src="project1.jpg" class="rounded-xl hover:scale-105 transition">
+    <img src="project2.jpg" class="rounded-xl hover:scale-105 transition">
+    <img src="project3.jpg" class="rounded-xl hover:scale-105 transition">
+  </div>
+</section><footer class="bg-gray-900 text-white text-center py-6">
+  <p>© 2026 Buzzflicks | All rights reserved</p>
+</footer></body>
+</html><!-- ===================== TEAM.HTML ===================== --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buzzflicks | Team</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body><header class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between">
+    <img src="logo.png" class="h-10">
+    <nav class="space-x-6">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active" href="team.html">Team</a>
+      <a class="nav-link" href="services.html">Services</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header><section class="py-20 text-center">
+  <h2 class="text-4xl font-bold mb-10">Our Team</h2>
+  <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    <div>
+      <img src="founder1.jpg" class="rounded-full w-40 mx-auto">
+      <h3 class="mt-4 font-bold">Laraib Khan</h3>
+      <p>Founder</p>
+    </div>
+    <div>
+      <img src="founder2.jpg" class="rounded-full w-40 mx-auto">
+      <h3 class="mt-4 font-bold">Sharib Khan</h3>
+      <p>Co-Founder</p>
     </div>
   </div>
-</section>
-
-<!-- INSTAGRAM PORTFOLIO -->
-<section id="portfolio" class="py-16 bg-gray-100">
-  <div class="max-w-7xl mx-auto px-6 text-center">
-    <h3 class="text-3xl font-bold mb-10">Our Work</h3>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <!-- 🔥 PASTE YOUR INSTAGRAM REEL EMBED BELOW -->
-      <blockquote class="instagram-media" data-instgrm-permalink="YOUR_INSTAGRAM_REEL_LINK"></blockquote>
-
-      <blockquote class="instagram-media" data-instgrm-permalink="YOUR_INSTAGRAM_REEL_LINK"></blockquote>
-
-      <blockquote class="instagram-media" data-instgrm-permalink="YOUR_INSTAGRAM_REEL_LINK"></blockquote>
-
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="py-16">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <h3 class="text-3xl font-bold mb-6">About Us</h3>
-    <p>We help businesses in Lucknow grow using reels, content & ads.</p>
-    <p class="font-semibold mt-4">Founders: Laraib & Sharib Khan</p>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-16 bg-gray-100">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <h3 class="text-3xl font-bold mb-6">Get Leads on WhatsApp</h3>
-
-    <form onsubmit="sendToWhatsApp(event)" class="grid gap-4 max-w-md mx-auto">
-      <input id="name" type="text" placeholder="Name" class="p-3 border rounded" required>
-      <input id="phone" type="tel" placeholder="Phone" class="p-3 border rounded" required>
-      <textarea id="msg" placeholder="Your Requirement" class="p-3 border rounded"></textarea>
-      <button class="bg-primary text-white py-3 rounded">Send on WhatsApp</button>
-    </form>
-  </div>
-</section>
-
-<!-- WHATSAPP BUTTON -->
-<a href="https://wa.me/91XXXXXXXXXX" class="fixed bottom-6 right-6 bg-green-500 text-white px-5 py-3 rounded-full shadow-lg">Chat</a>
-
-<!-- FOOTER -->
-<footer class="bg-dark text-white py-6 text-center">
+</section><footer class="bg-gray-900 text-white text-center py-6">
   <p>© 2026 Buzzflicks</p>
-</footer>
-
-<!-- INSTAGRAM SCRIPT -->
-<script async src="https://www.instagram.com/embed.js"></script>
-
-<!-- WHATSAPP SCRIPT -->
-<script>
+</footer></body>
+</html><!-- ===================== SERVICES.HTML ===================== --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buzzflicks | Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body><header class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between">
+    <img src="logo.png" class="h-10">
+    <nav class="space-x-6">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="team.html">Team</a>
+      <a class="nav-link active" href="services.html">Services</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header><section class="py-20 text-center">
+  <h2 class="text-4xl font-bold mb-10">Our Services</h2>
+  <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+    <div class="p-6 shadow rounded hover:shadow-lg transition">Social Media Strategy</div>
+    <div class="p-6 shadow rounded hover:shadow-lg transition">Content Creation</div>
+    <div class="p-6 shadow rounded hover:shadow-lg transition">Brand Shoots</div>
+    <div class="p-6 shadow rounded hover:shadow-lg transition">Paid Ads</div>
+  </div>
+</section><footer class="bg-gray-900 text-white text-center py-6">
+  <p>© 2026 Buzzflicks</p>
+</footer></body>
+</html><!-- ===================== CONTACT.HTML ===================== --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buzzflicks | Contact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body><header class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between">
+    <img src="logo.png" class="h-10">
+    <nav class="space-x-6">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="team.html">Team</a>
+      <a class="nav-link" href="services.html">Services</a>
+      <a class="nav-link active" href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header><section class="py-20 text-center">
+  <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
+  <form onsubmit="sendToWhatsApp(event)" class="max-w-md mx-auto grid gap-4">
+    <input id="name" placeholder="Name" class="p-3 border rounded">
+    <input id="phone" placeholder="Phone" class="p-3 border rounded">
+    <textarea id="msg" placeholder="Message" class="p-3 border rounded"></textarea>
+    <button class="bg-pink-500 text-white py-3 rounded">Send</button>
+  </form>
+</section><footer class="bg-gray-900 text-white text-center py-6">
+  <p>© 2026 Buzzflicks</p>
+</footer><script>
 function sendToWhatsApp(e) {
   e.preventDefault();
-
   let name = document.getElementById('name').value;
   let phone = document.getElementById('phone').value;
   let msg = document.getElementById('msg').value;
-
-  let text = `New Lead:%0AName: ${name}%0APhone: ${phone}%0AMessage: ${msg}`;
-
-  window.open(`https://wa.me/91XXXXXXXXXX?text=${text}`, '_blank');
+  let text = `Name:${name}%0APhone:${phone}%0AMessage:${msg}`;
+  window.open(`https://wa.me/91XXXXXXXXXX?text=${text}`);
 }
-</script>
-
-</body>
+</script></body>
 </html>
