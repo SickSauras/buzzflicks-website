@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; width: 0; height: 2px;
+      position: absolute; left: 0; bottom: -4px;
+      background: #E14D72; transition: 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .active { color: #E14D72; font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+<header class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between">
+    <img src="logo.png" class="h-10">
+    <nav class="space-x-6">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="team.html">Team</a>
+      <a class="nav-link" href="services.html">Services</a>
+      <a class="nav-link active" href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="py-20 text-center">
+  <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
+
+  <form onsubmit="sendToWhatsApp(event)" class="max-w-md mx-auto grid gap-4">
+    <input id="name" placeholder="Name" class="p-3 border rounded">
+    <input id="phone" placeholder="Phone" class="p-3 border rounded">
+    <textarea id="msg" placeholder="Message" class="p-3 border rounded"></textarea>
+    <button class="bg-pink-500 text-white py-3 rounded">Send</button>
+  </form>
+</section>
+
+<footer class="bg-gray-900 text-white text-center py-6">
+  <p>© 2026 Buzzflicks</p>
+</footer>
+
+<script>
+function sendToWhatsApp(e) {
+  e.preventDefault();
+  let name = document.getElementById('name').value;
+  let phone = document.getElementById('phone').value;
+  let msg = document.getElementById('msg').value;
+  let text = `Name:${name}%0APhone:${phone}%0AMessage:${msg}`;
+  window.open(`https://wa.me/917800132750?text=${text}`);
+}
+</script>
+
+</body>
+</html>
