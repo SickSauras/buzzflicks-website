@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Team</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; width: 0; height: 2px;
+      position: absolute; left: 0; bottom: -4px;
+      background: #E14D72; transition: 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .active { color: #E14D72; font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+<header class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between">
+    <img src="logo.png" class="h-10">
+    <nav class="space-x-6">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active" href="team.html">Team</a>
+      <a class="nav-link" href="services.html">Services</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="py-20 text-center">
+  <h2 class="text-4xl font-bold mb-10">Our Team</h2>
+
+  <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    <div>
+      <img src="founder1.jpg" class="rounded-full w-40 mx-auto">
+      <h3 class="mt-4 font-bold">Laraib Khan</h3>
+      <p>Founder</p>
+    </div>
+
+    <div>
+      <img src="founder2.jpg" class="rounded-full w-40 mx-auto">
+      <h3 class="mt-4 font-bold">Sharib Khan</h3>
+      <p>Co-Founder</p>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-900 text-white text-center py-6">
+  <p>© 2026 Buzzflicks</p>
+</footer>
+
+</body>
+</html>
