@@ -1,73 +1,1160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buzzflicks | Home</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <style>
-    .nav-link {
-      position: relative;
-      padding-bottom: 4px;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      left: 0;
-      bottom: 0;
-      background: #E14D72;
-      transition: 0.3s;
-    }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    .active {
-      color: #E14D72;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buzzflicks — Creative Social Media Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1B4FD8;
+    --blue-dark: #1340B0;
+    --blue-light: #3D6FEF;
+    --blue-pale: #EEF2FF;
+    --pink: #F0286A;
+    --pink-light: #FF4D84;
+    --pink-pale: #FFF0F5;
+    --black: #0F0F12;
+    --dark: #1A1A2E;
+    --text: #111827;
+    --text-mid: #4B5563;
+    --text-light: #9CA3AF;
+    --white: #FFFFFF;
+    --bg: #FAFAFA;
+    --border: #E5E7EB;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--pink);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+  }
+  .cursor-ring {
+    width: 34px; height: 34px;
+    border: 1.5px solid var(--blue);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+    opacity: 0.5;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(27,79,216,0.08); }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 3px;
+    color: var(--blue);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-dot {
+    width: 8px; height: 8px;
+    background: var(--pink);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue) !important;
+    color: var(--white) !important;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--blue-dark) !important; color: var(--white) !important; }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 140px 60px 80px;
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .hero-bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .hero-blob-1 {
+    width: 600px; height: 600px;
+    background: rgba(27,79,216,0.07);
+    top: -100px; right: -100px;
+  }
+  .hero-blob-2 {
+    width: 400px; height: 400px;
+    background: rgba(240,40,106,0.06);
+    bottom: 0; left: -80px;
+  }
+  .hero-blob-3 {
+    width: 300px; height: 300px;
+    background: rgba(27,79,216,0.05);
+    bottom: 100px; right: 200px;
+  }
+
+  /* Grid lines decoration */
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(27,79,216,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(27,79,216,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 860px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 28px;
+    background: var(--blue-pale);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-weight: 600;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--pink);
+    border-radius: 50%;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 11vw, 140px);
+    line-height: 0.92;
+    letter-spacing: -2px;
+    margin-bottom: 32px;
+    color: var(--black);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title .accent-blue { color: var(--blue); }
+  .hero-title .accent-pink { color: var(--pink); }
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-mid);
+    max-width: 500px;
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+    font-weight: 300;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .btn-primary {
+    background: var(--blue);
+    color: var(--white);
+    padding: 16px 40px;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    border: none;
+    cursor: none;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    display: inline-block;
+    box-shadow: 0 4px 20px rgba(27,79,216,0.25);
+  }
+  .btn-primary:hover {
+    background: var(--blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(27,79,216,0.35);
+  }
+  .btn-pink {
+    background: var(--pink);
+    color: var(--white);
+    padding: 16px 40px;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    border: none;
+    cursor: none;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    display: inline-block;
+    box-shadow: 0 4px 20px rgba(240,40,106,0.22);
+  }
+  .btn-pink:hover {
+    background: var(--pink-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(240,40,106,0.32);
+  }
+  .btn-outline {
+    border: 1.5px solid var(--blue);
+    color: var(--blue);
+    padding: 15px 36px;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--blue-pale); }
+
+  .hero-stats {
+    position: absolute; bottom: 60px; right: 60px;
+    display: flex; gap: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--blue);
+    line-height: 1;
+  }
+  .hero-stat-num span { color: var(--pink); }
+  .hero-stat-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Marquee */
+  .marquee-wrap {
+    background: var(--blue);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex; width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.85);
+    padding: 0 36px;
+    white-space: nowrap;
+  }
+  .marquee-sep { color: var(--pink); margin-left: 4px; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Section base */
+  section { padding: 120px 60px; }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+    font-weight: 700;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px; height: 2px;
+    background: var(--pink);
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 6.5vw, 84px);
+    line-height: 0.95;
+    letter-spacing: -1px;
+    margin-bottom: 60px;
+    color: var(--black);
+  }
+  .section-title .pink { color: var(--pink); }
+  .section-title .blue { color: var(--blue); }
+
+  /* Story */
+  .story-section {
+    background: var(--bg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .story-text p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--text-mid);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .story-image-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--blue-pale) 0%, #F0F4FF 100%);
+    border: 1px solid rgba(27,79,216,0.12);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .story-image-frame::before {
+    content: '';
+    position: absolute; inset: 16px;
+    border: 1px dashed rgba(27,79,216,0.2);
+    border-radius: 10px;
+  }
+  .story-image-frame::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    background: rgba(240,40,106,0.08);
+    border-radius: 50%;
+    top: 30px; right: 30px;
+    filter: blur(30px);
+  }
+  .story-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--blue);
+    padding: 48px;
+    text-align: center;
+    position: relative; z-index: 1;
+  }
+  .story-quote::before {
+    content: '"';
+    font-size: 80px;
+    color: var(--pink);
+    opacity: 0.15;
+    position: absolute;
+    top: 10px; left: 28px;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+  }
+
+  /* Services */
+  .services-section { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 0;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 40px 32px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    cursor: none;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--pink));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    border-radius: 0 0 2px 2px;
+  }
+  .service-card:hover {
+    border-color: rgba(27,79,216,0.25);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(27,79,216,0.1);
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+  .service-icon.blue-bg { background: var(--blue-pale); }
+  .service-icon.pink-bg { background: var(--pink-pale); }
+  .service-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+    color: var(--black);
+  }
+  .service-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-mid);
+    font-weight: 300;
+  }
+
+  /* Projects */
+  .projects-section { background: var(--bg); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+  .project-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    cursor: none;
+  }
+  .project-card:hover {
+    border-color: rgba(27,79,216,0.3);
+    box-shadow: 0 20px 50px rgba(27,79,216,0.1);
+    transform: translateY(-4px);
+  }
+  .project-card.featured {
+    grid-row: span 2;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    min-height: 500px;
+    background: linear-gradient(145deg, var(--blue) 0%, var(--blue-dark) 100%);
+    border-color: transparent;
+  }
+  .project-card.featured:hover {
+    border-color: transparent;
+    box-shadow: 0 24px 60px rgba(27,79,216,0.35);
+  }
+  .project-card.featured .project-title { color: var(--white); }
+  .project-card.featured .project-desc { color: rgba(255,255,255,0.7); }
+  .project-card.featured .project-tag {
+    background: rgba(240,40,106,0.2);
+    color: var(--pink-light);
+    border-color: rgba(240,40,106,0.3);
+  }
+  .featured-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .featured-bg-circle.c1 {
+    width: 300px; height: 300px;
+    background: rgba(240,40,106,0.1);
+    top: -80px; right: -80px;
+    filter: blur(40px);
+  }
+  .featured-bg-circle.c2 {
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.05);
+    bottom: 40px; left: -40px;
+    filter: blur(30px);
+  }
+  .project-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: var(--blue-pale);
+    border: 1px solid rgba(27,79,216,0.2);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .project-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    color: var(--black);
+    position: relative; z-index: 1;
+  }
+  .project-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-mid);
+    font-weight: 300;
+    position: relative; z-index: 1;
+  }
+  .project-arrow {
+    position: absolute; top: 28px; right: 28px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--blue-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    color: var(--blue);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translate(4px, -4px);
+  }
+  .project-card.featured .project-arrow {
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+  }
+  .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); }
+
+  /* Clients */
+  .clients-section { background: var(--white); }
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 60px;
+  }
+  .client-item {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: var(--text-light);
+    text-align: center;
+    transition: color 0.3s, background 0.3s, border-color 0.3s, transform 0.2s;
+    cursor: none;
+    min-height: 72px;
+  }
+  .client-item:hover {
+    color: var(--blue);
+    background: var(--blue-pale);
+    border-color: rgba(27,79,216,0.25);
+    transform: translateY(-3px);
+  }
+
+  /* Podcast */
+  .podcast-section { background: var(--dark); }
+  .podcast-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .podcast-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(240,40,106,0.12);
+    border: 1px solid rgba(240,40,106,0.3);
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--pink-light);
+    margin-bottom: 32px;
+    font-weight: 600;
+  }
+  .podcast-badge::before {
+    content: '●';
+    color: var(--pink-light);
+    animation: pulse 1.5s infinite;
+    font-size: 8px;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+  .podcast-section .section-label { color: rgba(255,255,255,0.5); }
+  .podcast-section .section-label::before { background: var(--pink); }
+  .podcast-section .section-title { color: var(--white); }
+  .podcast-section p { color: rgba(255,255,255,0.6); }
+  .podcast-features {
+    list-style: none;
+    margin-top: 40px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .podcast-features li {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 13px; font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .podcast-features li .feat-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: rgba(27,79,216,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .podcast-studio-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px;
+  }
+  .studio-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    pointer-events: none;
+  }
+  .studio-glow.g1 {
+    width: 200px; height: 200px;
+    background: rgba(27,79,216,0.3);
+    top: -40px; right: -40px;
+  }
+  .studio-glow.g2 {
+    width: 150px; height: 150px;
+    background: rgba(240,40,106,0.25);
+    bottom: -20px; left: 20px;
+  }
+  .studio-arches {
+    display: flex; gap: 18px; align-items: flex-end;
+    position: relative; z-index: 1;
+  }
+  .studio-arch {
+    width: 56px;
+    border: 2.5px solid rgba(255,255,255,0.2);
+    border-bottom: none;
+    border-radius: 28px 28px 0 0;
+    position: relative;
+  }
+  .studio-arch:nth-child(1) { height: 90px; border-color: rgba(27,79,216,0.6); }
+  .studio-arch:nth-child(2) { height: 120px; border-color: rgba(61,111,239,0.8); }
+  .studio-arch:nth-child(3) { height: 100px; border-color: rgba(27,79,216,0.6); }
+  .studio-lights {
+    position: absolute; top: 24px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 28px; z-index: 1;
+  }
+  .studio-light {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--pink-light);
+    box-shadow: 0 0 14px var(--pink), 0 0 36px rgba(240,40,106,0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  .studio-light:nth-child(2) { background: var(--blue-light); box-shadow: 0 0 14px var(--blue), 0 0 36px rgba(27,79,216,0.5); animation-delay: 0.7s; }
+  .studio-light:nth-child(3) { animation-delay: 1.4s; }
+  @keyframes glow {
+    from { opacity: 0.6; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.3); }
+  }
+  .studio-label {
+    position: absolute; bottom: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px; letter-spacing: 5px;
+    color: rgba(255,255,255,0.3);
+    z-index: 1;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 160px 60px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none;
+  }
+  .cta-blob.b1 { width: 500px; height: 500px; background: rgba(27,79,216,0.07); top: -100px; left: -100px; }
+  .cta-blob.b2 { width: 400px; height: 400px; background: rgba(240,40,106,0.06); bottom: -80px; right: -80px; }
+  .cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 9vw, 110px);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+    color: var(--black);
+  }
+  .cta-title .blue { color: var(--blue); }
+  .cta-title .pink { color: var(--pink); }
+  .cta-sub {
+    font-size: 15px;
+    color: var(--text-mid);
+    margin-bottom: 52px;
+    font-weight: 300;
+    position: relative; z-index: 1;
+    max-width: 400px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.8;
+  }
+  .cta-btns {
+    display: flex; gap: 16px; justify-content: center;
+    position: relative; z-index: 1;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    padding: 64px 60px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 4px;
+    color: var(--white);
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 16px;
+  }
+  .footer-brand-dot { color: var(--pink); }
+  .footer-tagline {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+  .footer-col-title {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .footer-links a {
+    text-decoration: none;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--blue-light); }
+  .footer-bottom {
+    background: rgba(255,255,255,0.03);
+    padding: 20px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+  .footer-copy .pink { color: var(--pink); opacity: 0.7; }
+
+  /* Divider */
+  .divider-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blue), var(--pink), transparent);
+    opacity: 0.25;
+    margin: 0 60px;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 72px 24px; }
+    .hero { padding: 110px 24px 60px; }
+    .hero-stats { display: none; }
+    .story-section, .podcast-inner { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; gap: 12px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-row: span 1; min-height: 280px; }
+    .clients-grid { grid-template-columns: repeat(3, 1fr); }
+    footer { grid-template-columns: 1fr; padding: 40px 24px; }
+    .footer-bottom { flex-direction: column; gap: 10px; padding: 20px 24px; text-align: center; }
+    .cta-btns { flex-direction: column; align-items: center; }
+    .divider-line { margin: 0 24px; }
+  }
+</style>
 </head>
+<body>
 
-<body class="bg-white text-gray-800">
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<header class="bg-white shadow-md">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between">
-    <img src="logo.png" class="h-10">
-    <nav class="space-x-6">
-      <a class="nav-link active" href="index.html">Home</a>
-      <a class="nav-link" href="team.html">Team</a>
-      <a class="nav-link" href="services.html">Services</a>
-      <a class="nav-link" href="contact.html">Contact</a>
-    </nav>
+<!-- Nav -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">BUZZ<span class="nav-logo-dot"></span>FLICKS</a>
+  <ul class="nav-links">
+    <li><a href="#story">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#podcast">Studio</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-bg-blob hero-blob-1"></div>
+  <div class="hero-bg-blob hero-blob-2"></div>
+  <div class="hero-bg-blob hero-blob-3"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Creative Social Media Agency — Lucknow</span>
+    <h1 class="hero-title">
+      TURN IDEAS<br>
+      <span class="accent-blue">INTO DIGITAL</span><br>
+      <span class="accent-pink">IMPACT.</span>
+    </h1>
+    <p class="hero-sub">We help brands stand out on social media with scroll-stopping reels, compelling content, strategic marketing, and smart growth strategies.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Our Work</a>
+      <a href="#services" class="btn-pink">Our Services</a>
+    </div>
   </div>
-</header>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">15<span>+</span></div>
+      <div class="hero-stat-label">Brands Served</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">100<span>%</span></div>
+      <div class="hero-stat-label">Digital Growth</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">1<span>st</span></div>
+      <div class="hero-stat-label">Podcast Studio</div>
+    </div>
+  </div>
+</section>
 
-<section class="h-screen flex items-center justify-center text-center bg-gradient-to-r from-pink-500 to-blue-500 text-white">
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">REELS <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">BRAND SHOOTS <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">CONTENT CREATION <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">SOCIAL STRATEGY <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">PAID ADS <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">ACCOUNT MANAGEMENT <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">PODCAST STUDIO <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">DIGITAL GROWTH <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">REELS <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">BRAND SHOOTS <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">CONTENT CREATION <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">SOCIAL STRATEGY <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">PAID ADS <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">ACCOUNT MANAGEMENT <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">PODCAST STUDIO <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">DIGITAL GROWTH <span class="marquee-sep">✦</span></span>
+  </div>
+</div>
+
+<!-- Story -->
+<section class="story-section" id="story">
+  <div class="story-text reveal">
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title">PASSION<br><span class="blue">MADE</span><br><span class="pink">BRAND.</span></h2>
+    <p>We were always passionate about content creation — so we turned that passion into Buzzflicks. A dynamic social media agency built to craft powerful digital experiences that spark engagement and drive real growth.</p>
+    <p>We believe in the art of storytelling, strategic thinking, and building brands that don't just show up online — they own the conversation.</p>
+  </div>
+  <div class="reveal">
+    <div class="story-image-frame">
+      <p class="story-quote">We don't just create content — we create impact.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services-section" id="services">
+  <div class="reveal">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">OUR<br><span class="blue">SERVICES</span></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon blue-bg">📊</div>
+      <div class="service-number">01</div>
+      <div class="service-name">Social Media Strategy</div>
+      <p class="service-desc">Tailored social media strategy and planning crafted specifically for your brand's goals, audience, and growth trajectory.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon pink-bg">🎬</div>
+      <div class="service-number">02</div>
+      <div class="service-name">Content Creation</div>
+      <p class="service-desc">Scroll-stopping reels, posts, stories, and short-form videos designed to hook attention and drive engagement.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon blue-bg">📸</div>
+      <div class="service-number">03</div>
+      <div class="service-name">Brand Shoots</div>
+      <p class="service-desc">Professional photo and video brand shoots for digital platforms — all types of shoots handled with precision and style.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon pink-bg">📱</div>
+      <div class="service-number">04</div>
+      <div class="service-name">Account Management</div>
+      <p class="service-desc">Full-service social media handling and account management, so you can focus on running your business.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon blue-bg">🎯</div>
+      <div class="service-number">05</div>
+      <div class="service-name">Paid Ads & Campaigns</div>
+      <p class="service-desc">Strategic paid advertising and campaign management to maximize reach, conversions, and return on investment.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon pink-bg">🚀</div>
+      <div class="service-number">06</div>
+      <div class="service-name">Brand Positioning</div>
+      <p class="service-desc">Sharpen your brand's identity and online presence to stand out in a crowded digital landscape and attract the right audience.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- Projects -->
+<section class="projects-section" id="projects">
+  <div class="reveal">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">PREVIOUS<br><span class="pink">PROJECTS</span></h2>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card featured reveal">
+      <div class="featured-bg-circle c1"></div>
+      <div class="featured-bg-circle c2"></div>
+      <div class="project-arrow">↗</div>
+      <span class="project-tag">Fashion — Campaign</span>
+      <h3 class="project-title">Eifa Chikankari</h3>
+      <p class="project-desc">An exclusive visual campaign celebrating the finesse of handcrafted Chikankari — emphasizing timeless elegance, refined aesthetics, and premium storytelling to elevate luxury positioning.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-arrow">↗</div>
+      <span class="project-tag">Streetwear — Content</span>
+      <h3 class="project-title">Driprun</h3>
+      <p class="project-desc">A premium clothing campaign showcasing refined craftsmanship, rich textures, and sophisticated styling to elevate brand presence in the streetwear market.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-arrow">↗</div>
+      <span class="project-tag">Sports — Brand Video</span>
+      <h3 class="project-title">Sports Square Turf</h3>
+      <p class="project-desc">Visually compelling content showcasing turf quality, lighting, and match-day energy to strengthen digital brand presence.</p>
+    </div>
+    <div class="project-card reveal" style="grid-column:2;">
+      <div class="project-arrow">↗</div>
+      <span class="project-tag">Beauty — Salon Shoot</span>
+      <h3 class="project-title">Glam Haus</h3>
+      <p class="project-desc">A premium salon shoot capturing expert craftsmanship, refined styling, and confidence-driven transformations — an elevated beauty experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Clients -->
+<section class="clients-section" id="clients">
+  <div class="reveal">
+    <p class="section-label">Brands We've Served</p>
+    <h2 class="section-title">WORKED<br><span class="blue">WITH</span></h2>
+  </div>
+  <div class="clients-grid reveal">
+    <div class="client-item">Ehaab Couture</div>
+    <div class="client-item">Eifa Chikankari</div>
+    <div class="client-item">Driprun</div>
+    <div class="client-item">Swapna Foundation</div>
+    <div class="client-item">The Chocolate Room</div>
+    <div class="client-item">The Indian Garage</div>
+    <div class="client-item">De Globe Cafe</div>
+    <div class="client-item">Clinic Gen Next</div>
+    <div class="client-item">Food Valley</div>
+    <div class="client-item">Osaak Perfumes</div>
+    <div class="client-item">Colorful Creation</div>
+    <div class="client-item">Sports Square Turf</div>
+    <div class="client-item">Plys's House</div>
+    <div class="client-item">Glam Haus</div>
+    <div class="client-item">New Lucknow Kitchen</div>
+  </div>
+</section>
+
+<!-- Podcast -->
+<section class="podcast-section" id="podcast">
+  <div class="podcast-inner">
+    <div class="reveal">
+      <div class="podcast-badge">Lucknow's First Authentic Podcast Studio</div>
+      <p class="section-label">Our Studio</p>
+      <h2 class="section-title">PODCAST<br>STUDIO</h2>
+      <p style="font-size:14px; line-height:1.9; font-weight:300;">A fully equipped, professionally designed podcast studio built for creators, entrepreneurs, and brands who want to own the audio-visual conversation.</p>
+      <ul class="podcast-features">
+        <li><span class="feat-icon">📷</span> 2 Professional Camera Setup</li>
+        <li><span class="feat-icon">🎙</span> 2 High-Quality Mic Setup</li>
+        <li><span class="feat-icon">💡</span> 3 Light Setup + Professional Editing</li>
+        <li><span class="feat-icon">🎬</span> Full-Fledged 30 Min Produced Video</li>
+        <li><span class="feat-icon">🛋</span> Premium Furniture & Aesthetics</li>
+      </ul>
+    </div>
+    <div class="podcast-studio-card reveal">
+      <div class="studio-glow g1"></div>
+      <div class="studio-glow g2"></div>
+      <div class="studio-lights">
+        <div class="studio-light"></div>
+        <div class="studio-light"></div>
+        <div class="studio-light"></div>
+      </div>
+      <div class="studio-arches">
+        <div class="studio-arch"></div>
+        <div class="studio-arch"></div>
+        <div class="studio-arch"></div>
+      </div>
+      <div class="studio-label">BUZZFLICKS PODCAST</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-blob b1"></div>
+  <div class="cta-blob b2"></div>
+  <p class="section-label reveal" style="justify-content:center;">Ready to grow?</p>
+  <h2 class="cta-title reveal">LET'S CREATE<br><span class="blue">SOMETHING</span><br><span class="pink">GREAT.</span></h2>
+  <p class="cta-sub reveal">Turn your brand's vision into digital reality. We're ready when you are.</p>
+  <div class="cta-btns reveal">
+    <a href="mailto:hello@buzzflicks.com" class="btn-primary">Get In Touch</a>
+    <a href="#projects" class="btn-outline">View Our Work</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
   <div>
-    <h1 class="text-5xl font-bold mb-4">Buzzflicks</h1>
-    <p>Creative Marketing Agency in Lucknow</p>
+    <div class="footer-brand">BUZZ<span class="footer-brand-dot">✦</span>FLICKS</div>
+    <p class="footer-tagline">A creative social media agency helping brands stand out in the noise with bold content and smart strategy. Based in Lucknow.</p>
   </div>
-</section>
-
-<section class="py-16 text-center max-w-3xl mx-auto">
-  <h2 class="text-3xl font-bold mb-4">About Us</h2>
-  <p>We help brands grow using reels, content & strategy.</p>
-</section>
-
-<section class="py-16 bg-gray-100">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
-    <img src="project1.jpg" class="rounded-xl hover:scale-105 transition">
-    <img src="project2.jpg" class="rounded-xl hover:scale-105 transition">
-    <img src="project3.jpg" class="rounded-xl hover:scale-105 transition">
+  <div>
+    <p class="footer-col-title">Navigation</p>
+    <ul class="footer-links">
+      <li><a href="#story">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Our Work</a></li>
+      <li><a href="#podcast">Podcast Studio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
-</section>
-
-<footer class="bg-gray-900 text-white text-center py-6">
-  <p>© 2026 Buzzflicks</p>
+  <div>
+    <p class="footer-col-title">Services</p>
+    <ul class="footer-links">
+      <li><a href="#services">Social Media Strategy</a></li>
+      <li><a href="#services">Content Creation</a></li>
+      <li><a href="#services">Brand Shoots</a></li>
+      <li><a href="#services">Paid Ads & Campaigns</a></li>
+      <li><a href="#services">Account Management</a></li>
+    </ul>
+  </div>
 </footer>
+<div class="footer-bottom">
+  <span class="footer-copy">© 2025 Buzzflicks. All rights reserved.</span>
+  <span class="footer-copy">Lucknow's Premier <span class="pink">Creative Agency</span></span>
+</div>
 
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animateCursor() {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  })();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Cursor hover expand
+  document.querySelectorAll('a, button, .service-card, .project-card, .client-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '18px';
+      cursor.style.height = '18px';
+      ring.style.width = '50px';
+      ring.style.height = '50px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px';
+      cursor.style.height = '10px';
+      ring.style.width = '34px';
+      ring.style.height = '34px';
+    });
+  });
+</script>
 </body>
 </html>
